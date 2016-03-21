@@ -1,17 +1,19 @@
-
-package main.commands;
+package main.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
+import lib.XboxController;
+import main.HardwareAdapter;
 import main.Robot;
 
 /**
  *
  */
-public class ExampleCommand extends Command {
+public class Drive extends Command {
+	private XboxController xbox = HardwareAdapter.xbox;
 
-    public ExampleCommand() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.exampleSubsystem);
+    public Drive() {
+    	requires(Robot.dt);
+    	this.setInterruptible(true);
     }
 
     // Called just before this Command runs the first time
@@ -20,6 +22,7 @@ public class ExampleCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.dt.arcadeDrive(xbox.getMainY(), xbox.getMainX(), true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

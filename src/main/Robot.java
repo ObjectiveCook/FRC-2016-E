@@ -7,9 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import main.commands.ExampleCommand;
-import main.subsystems.ExampleSubsystem;
-import main.subsystems.Turret;
+import main.commands.drivetrain.Drive;
+import main.subsystems.Drivetrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,10 +18,8 @@ import main.subsystems.Turret;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static Turret tr;
 	public static OI oi;
+	public static Drivetrain dt;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -33,9 +30,9 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-		tr = new Turret();
+		dt = new Drivetrain();
         chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new ExampleCommand());
+        chooser.addDefault("Default Auto", new Drive());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }
