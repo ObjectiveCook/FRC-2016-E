@@ -1,7 +1,7 @@
 package main;
 
 import lib.XboxController;
-import main.commands.DriveDistance;
+import main.commands.drivetrain.DriveDistance;
 import main.commands.drivetrain.RotateToAngle;
 
 /**

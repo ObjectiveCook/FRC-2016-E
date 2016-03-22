@@ -1,4 +1,4 @@
-package main.commands;
+package main.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.PIDController;
