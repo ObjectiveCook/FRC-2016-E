@@ -28,14 +28,15 @@ public class RotateToAngle extends Command {
 		this.maxSpeed = maxSpeed;
 		angle = degrees;
 		buildController();
-		setTimeout(2);
+		//setTimeout(2);
 	}
 
 	public RotateToAngle(double angle, double maxSpeed) {
 		requires(Robot.dt);
 		this.angle = angle;
 		this.maxSpeed = maxSpeed;
-		setTimeout(2);
+		buildController();
+		//setTimeout(2);
 	}
 
 	public RotateToAngle(double degrees) {
@@ -64,7 +65,7 @@ public class RotateToAngle extends Command {
 
 			public void pidWrite(double d) {
 				// Spin with the magnitude returned by the PID calculation,
-				Robot.dt.arcadeDrive(0, d, false);
+				Robot.dt.arcadeDrive(0, -d, false);
 			}
 		});
 		pid.setAbsoluteTolerance(TOLERANCE);

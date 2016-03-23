@@ -30,17 +30,20 @@ public class Drivetrain extends Subsystem implements Constants{
 		setControlMode(VBUS);
 		setBrakeMode(COAST);
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		left.setPosition(0);
+		
 		right.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		right.setPosition(0);
 		
 		drive = new RobotDrive(left, right);
-		drive.setSafetyEnabled(true);
-		drive.setExpiration(1.0);
-		drive.setSensitivity(0.3);
+		//drive.setSafetyEnabled(true);
+		drive.setExpiration(0.1);
+		//drive.setSensitivity(0.3);
 		drive.setMaxOutput(1.0);
 	}
 	
 	public void arcadeDrive(double move, double rotate, boolean squared) {
-		drive.arcadeDrive(move, rotate, squared);
+		drive.arcadeDrive(move, rotate, false);
 	}
 	
 	public void drive(double magnitude, double curve) {
@@ -59,8 +62,10 @@ public class Drivetrain extends Subsystem implements Constants{
 	public void setControlMode(TalonControlMode mode) {
 		left.changeControlMode(mode);
 		leftSlave.changeControlMode(SLAVE);
+		leftSlave.set(left.getDeviceID());
 		right.changeControlMode(mode);
 		rightSlave.changeControlMode(SLAVE);
+		rightSlave.set(right.getDeviceID());
 	}
 	
 	public void setBrakeMode(boolean brake) {

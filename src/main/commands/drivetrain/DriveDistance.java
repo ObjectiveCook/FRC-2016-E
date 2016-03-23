@@ -14,7 +14,7 @@ import main.Robot;
  */
 public class DriveDistance extends Command {
 
-	private static final double TOLERANCE = 50;
+	private static final double TOLERANCE = 5;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
 	private PIDController pid;
 	private double maxSpeed = 0.6;

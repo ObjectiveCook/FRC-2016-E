@@ -16,10 +16,10 @@ public class OI {
 	}
 	
 	private void check() {
-		xbox.a.whenPressed(new RotateToAngle(45, 0.5));
-		xbox.b.whenPressed(new RotateToAngle(0, 0.7));
-		xbox.x.whenPressed(new DriveDistance(1, 0.5));
-		xbox.y.whenPressed(new DriveDistance(2, 0.3));
+		xbox.a.whenPressed(new RotateToAngle(0, 1.0));
+		xbox.b.whenPressed(new RotateToAngle(180, 1.0));
+		xbox.x.whenPressed(new DriveDistance(10, 0.5));
+		xbox.y.whenPressed(new DriveDistance(20, 0.3));
 	}
 }
 

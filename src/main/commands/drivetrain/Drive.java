@@ -13,7 +13,7 @@ public class Drive extends Command {
 
     public Drive() {
     	requires(Robot.dt);
-    	this.setInterruptible(true);
+    	//this.setInterruptible(true);
     }
 
     // Called just before this Command runs the first time
