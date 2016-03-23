@@ -13,52 +13,53 @@ import main.commands.drivetrain.Drive;
 /**
  *
  */
-public class Drivetrain extends Subsystem implements Constants{
-	
+public class Drivetrain extends Subsystem implements Constants {
 	private AnalogGyro gyro = HardwareAdapter.gyro;
-    
 	private CANTalon left = HardwareAdapter.leftDrive;
 	private CANTalon leftSlave = HardwareAdapter.leftSlave;
 	private CANTalon right = HardwareAdapter.rightDrive;
 	private CANTalon rightSlave = HardwareAdapter.rightSlave;
-	
 	private RobotDrive drive;
-	
+
+	public void initDefaultCommand() {
+		setDefaultCommand(new Drive());
+	}
+
 	public Drivetrain() {
 		gyro.reset();
-		
+
 		setControlMode(VBUS);
 		setBrakeMode(COAST);
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		left.setPosition(0);
-		
+
 		right.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		right.setPosition(0);
-		
+
 		drive = new RobotDrive(left, right);
-		//drive.setSafetyEnabled(true);
+		// drive.setSafetyEnabled(true);
 		drive.setExpiration(0.1);
-		//drive.setSensitivity(0.3);
+		// drive.setSensitivity(0.3);
 		drive.setMaxOutput(1.0);
 	}
-	
+
 	public void arcadeDrive(double move, double rotate, boolean squared) {
 		drive.arcadeDrive(move, rotate, false);
 	}
-	
+
 	public void drive(double magnitude, double curve) {
 		drive.drive(magnitude, curve);
 	}
-	
+
 	public double getDistance() {
-		return ((left.getPosition()) + (right.getPosition()))/2;
+		return ((left.getPosition()) + (right.getPosition())) / 2;
 	}
-	
+
 	public void reset() {
 		left.setPosition(0);
 		right.setPosition(0);
 	}
-	
+
 	public void setControlMode(TalonControlMode mode) {
 		left.changeControlMode(mode);
 		leftSlave.changeControlMode(SLAVE);
@@ -67,14 +68,10 @@ public class Drivetrain extends Subsystem implements Constants{
 		rightSlave.changeControlMode(SLAVE);
 		rightSlave.set(right.getDeviceID());
 	}
-	
+
 	public void setBrakeMode(boolean brake) {
 		left.enableBrakeMode(brake);
 		right.enableBrakeMode(brake);
 	}
 
-    public void initDefaultCommand() {
-    	setDefaultCommand(new Drive());
-    }
 }
-
