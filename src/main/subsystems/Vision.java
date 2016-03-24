@@ -10,7 +10,14 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class Vision extends Subsystem {
 	private NetworkTable vision;
 	private double[] CenterX, CenterY, Width, Height, defaultValue = new double[0];
-	public double centerX, centerY, width, height;
+	public double angleX, angleY, distance, centerX, centerY, width, height;
+	
+	private final double targetlength = 1.667;
+	private final double targetHeight = 1.0;
+	private final double FOVx_px = 320;
+	private final double FOVx_deg = 58.4;
+	private final double FOVy_px = 240;
+	private final double FOVy_deg = 41.1;
 
 	public void initDefaultCommand() {
 		setDefaultCommand(null);
@@ -41,5 +48,11 @@ public class Vision extends Subsystem {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean targetGoal() {
+		angleX = ((centerX - FOVx_px)/(FOVx_px) * FOVx_deg;
+		distance = (targetLength * FOVx_px)/(2 * Width * Math.tan(angleX));	
+		
 	}
 }
