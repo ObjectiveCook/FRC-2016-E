@@ -32,7 +32,7 @@ public class SetAngle extends Command implements Constants{
     protected boolean isFinished() {
     	double error = winch.getClosedLoopError();
     	
-        return (error >= 0 || error <= WINCH_TOLERANCE);
+        return (error >= 0 && error <= WINCH_TOLERANCE);
     }
 
     // Called once after isFinished returns true

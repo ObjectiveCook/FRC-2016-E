@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.Constants;
 import main.HardwareAdapter;
 import main.commands.drivetrain.Drive;
@@ -31,20 +32,23 @@ public class Drivetrain extends Subsystem implements Constants {
 		setControlMode(VBUS);
 		setBrakeMode(COAST);
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		left.configEncoderCodesPerRev(49);
 		left.setPosition(0);
 
 		right.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		right.configEncoderCodesPerRev(49);
 		right.setPosition(0);
 
 		drive = new RobotDrive(left, right);
 		// drive.setSafetyEnabled(true);
 		drive.setExpiration(0.1);
 		// drive.setSensitivity(0.3);
-		drive.setMaxOutput(1.0);
+		drive.setMaxOutput(0.85);
 	}
 
 	public void arcadeDrive(double move, double rotate, boolean squared) {
 		drive.arcadeDrive(move, rotate, false);
+		SmartDashboard.putNumber("distance", getDistance());
 	}
 
 	public void drive(double magnitude, double curve) {
@@ -52,7 +56,7 @@ public class Drivetrain extends Subsystem implements Constants {
 	}
 
 	public double getDistance() {
-		return ((left.getPosition()) + (right.getPosition())) / 2;
+		return ((-left.getPosition()) + (right.getPosition())) / 2;
 	}
 
 	public void reset() {

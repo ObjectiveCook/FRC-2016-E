@@ -10,6 +10,6 @@ public class Intake extends CommandGroup {
     
     public  Intake() {
     	addSequential(new HomeTurret());
-    	addSequential(new SetShooter(-1.0));
+    	addSequential(new SetShooter(-0.6));
     }
 }

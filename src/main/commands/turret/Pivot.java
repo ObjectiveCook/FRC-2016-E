@@ -18,7 +18,7 @@ public class Pivot extends Command implements Constants {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.tr.setCtrlMode(VBUS);
+		//Robot.tr.setCtrlMode(VBUS);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

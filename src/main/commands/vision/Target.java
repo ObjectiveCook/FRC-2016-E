@@ -1,4 +1,4 @@
-package main.commands.drivetrain;
+package main.commands.vision;
 
 import edu.wpi.first.wpilibj.command.Command;
 import main.Robot;
@@ -6,10 +6,11 @@ import main.Robot;
 /**
  *
  */
-public class ResetDrivetrain extends Command {
+public class Target extends Command {
 
-    public ResetDrivetrain() {
-    	requires(Robot.dt);
+    public Target() {
+    	requires(Robot.vi);
+    	setTimeout(2);
     }
 
     // Called just before this Command runs the first time
@@ -18,7 +19,10 @@ public class ResetDrivetrain extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.dt.reset();
+    	if(!Robot.vi.createImage())
+    		return;
+    	
+    	Robot.vi.targetGoal();
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -1,4 +1,4 @@
-package main.commands.shooter;
+package main.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import main.Robot;
@@ -6,12 +6,10 @@ import main.Robot;
 /**
  *
  */
-public class SetShooter extends Command {
-	private double speed;
-	
-    public SetShooter(double speed) {
-    	requires(Robot.sh);
-    	this.speed = speed;
+public class ResetEncoders extends Command {
+
+    public ResetEncoders() {
+    	requires(Robot.dt);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +18,7 @@ public class SetShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.sh.set(speed);
+    	Robot.dt.reset();
     }
 
     // Make this return true when this Command no longer needs to run execute()

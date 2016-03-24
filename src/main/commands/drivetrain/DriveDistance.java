@@ -69,23 +69,13 @@ public class DriveDistance extends Command {
 				// Drive with the magnitude returned by the PID calculation,
 				// and curve the opposite way from the current yaw reading
 				// (Divide yaw by 180 so as to normalize to -1.0 / + 1.0)
-				Robot.dt.drive(-d, -(gyro.getAngle() / 180));
+				Robot.dt.drive(-d, 0);
 			}
 		});
 
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
 		pid.setSetpoint(distance);
-	}
-
-	// If the robot has hit a wall, SAY SOMETHING!
-	public boolean hasStalled() {
-		double pastDistance = Robot.dt.getDistance();
-		if (Robot.dt.getDistance() - pastDistance <= 1) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	// Called just before this Command runs the first time

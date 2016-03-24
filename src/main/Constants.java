@@ -35,8 +35,8 @@ public interface Constants {
 	// USB Ports
 	public static final int JOYSTICK = 0;
 	// DIO Ports
-	public static final int UPPER_LIMIT = 0;
-	public static final int LOWER_LIMIT = 1;
+	public static final int UPPER_LIMIT = 1;
+	public static final int LOWER_LIMIT = 0;
 	// Analog Ports
 	public static final int GYRO = 0;
 	// CAN Bus Ports
@@ -55,8 +55,8 @@ public interface Constants {
 	public static final int SHIFTER_RET = 0;
 	public static final int LAUNCHER_EXT = 3;
 	public static final int LAUNCHER_RET = 2;
-	public static final int LEFT_AXE_EXT = 4;
-	public static final int LEFT_AXE_RET = 5;
-	public static final int RIGHT_AXE_EXT = 6;
-	public static final int RIGHT_AXE_RET = 7;
+	public static final int LEFT_AXE_EXT = 6;
+	public static final int LEFT_AXE_RET = 7;
+	public static final int RIGHT_AXE_EXT = 4;
+	public static final int RIGHT_AXE_RET = 5;
 }

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.Constants;
 import main.HardwareAdapter;
 import main.commands.turret.Pivot;
@@ -22,7 +23,7 @@ public class Turret extends Subsystem implements Constants {
 	}
 	
 	public Turret() {
-		setCtrlMode(VBUS);
+		setCtrlMode(POS);
 		winch.setInverted(true);
 		winch.enableBrakeMode(BRAKE);
 		winch.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -37,12 +38,15 @@ public class Turret extends Subsystem implements Constants {
 	}
 
 	public void pivot(double yAxis) {
-		if (yAxis > 0.0 && !upper.get())
-			winch.set(yAxis * TURRET_UPWARD_THROTTLE);
-		else if (yAxis < 0.0 && !lower.get())
-			winch.set(yAxis * TURRET_DOWNWARD_THROTTLE);
+		if (yAxis < 0.0 && !upper.get())
+			winch.set(0);
+		else if (yAxis > 0.0 && !lower.get())
+			winch.set(0);
 		else
 			winch.set(yAxis);
+		
+		SmartDashboard.putBoolean("Upper", !upper.get());
+		SmartDashboard.putBoolean("Lpper", !lower.get());
 
 	}
 	

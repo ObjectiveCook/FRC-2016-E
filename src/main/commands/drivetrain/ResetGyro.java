@@ -1,17 +1,17 @@
-package main.commands.shooter;
+package main.commands.drivetrain;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Command;
+import main.HardwareAdapter;
 import main.Robot;
 
 /**
  *
  */
-public class SetShooter extends Command {
-	private double speed;
-	
-    public SetShooter(double speed) {
-    	requires(Robot.sh);
-    	this.speed = speed;
+public class ResetGyro extends Command {
+	private AnalogGyro gyro = HardwareAdapter.gyro;
+    public ResetGyro() {
+    	requires(Robot.dt);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class SetShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.sh.set(speed);
+    	gyro.reset();
     }
 
     // Make this return true when this Command no longer needs to run execute()
