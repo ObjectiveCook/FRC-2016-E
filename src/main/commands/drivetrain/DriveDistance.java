@@ -25,7 +25,6 @@ public class DriveDistance extends Command {
 	private double kD = 1.0;
 
 	public DriveDistance(double distance, double maxSpeed, double kp, double ki, double kd) {
-
 		requires(Robot.dt);
 		kP = kp;
 		kI = ki;
@@ -36,7 +35,6 @@ public class DriveDistance extends Command {
 	}
 
 	public DriveDistance(double distance, double maxSpeed) {
-
 		requires(Robot.dt);
 		this.maxSpeed = maxSpeed;
 		this.distance = distance;
@@ -44,7 +42,6 @@ public class DriveDistance extends Command {
 	}
 
 	public DriveDistance(double distance) {
-
 		requires(Robot.dt);
 		this.distance = distance;
 		buildController();

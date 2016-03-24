@@ -8,8 +8,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.commands.drivetrain.Drive;
-import main.subsystems.*;
-import main.subsystems.battleaxes.*;
+import main.subsystems.Drivetrain;
+import main.subsystems.Shooter;
+import main.subsystems.Turret;
+import main.subsystems.battleaxes.LeftAxe;
+import main.subsystems.battleaxes.RightAxe;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +26,8 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain dt;
 	public static LeftAxe la;
 	public static RightAxe ra;
+	public static Turret tr;
+	public static Shooter sh;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -35,6 +40,8 @@ public class Robot extends IterativeRobot {
 		dt = new Drivetrain();
 		la = new LeftAxe();
 		ra = new RightAxe();
+		tr = new Turret();
+		sh = new Shooter();
 		oi = new OI();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Drive());
