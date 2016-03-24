@@ -21,9 +21,11 @@ public class RotateToAngle extends Command {
 
 	private PIDController pid;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
+	private double current;
 
 	public RotateToAngle(double degrees, double maxSpeed, double kp, double ki, double kd) {
 		requires(Robot.dt);
+		current = gyro.getAngle();
 		kD = kd;
 		this.maxSpeed = maxSpeed;
 		angle = degrees;
@@ -33,6 +35,7 @@ public class RotateToAngle extends Command {
 
 	public RotateToAngle(double angle, double maxSpeed) {
 		requires(Robot.dt);
+		current = gyro.getAngle();
 		this.angle = angle;
 		this.maxSpeed = maxSpeed;
 		buildController();
@@ -40,13 +43,14 @@ public class RotateToAngle extends Command {
 	}
 
 	public RotateToAngle(double degrees) {
-
 		requires(Robot.dt);
+		current = gyro.getAngle();
 		angle = degrees;
 		buildController();
 	}
 
 	private void buildController() {
+
 		pid = new PIDController(kP, kI, kD, new PIDSource() {
 			PIDSourceType sourceType = PIDSourceType.kDisplacement;
 
@@ -70,7 +74,7 @@ public class RotateToAngle extends Command {
 		});
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(angle);
+		pid.setSetpoint(current + angle);
 	}
 
 	// Called just before this Command runs the first time

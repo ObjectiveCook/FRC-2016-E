@@ -32,8 +32,9 @@ public class Vision extends Subsystem {
             		e.printStackTrace();
         	}
 	}
+}
 	
-	public boolean createImage() {
+	/*public boolean createImage() {
         	CenterX = vision.getNumberArray("centerX", defaultValue);
         	CenterY = vision.getNumberArray("centerY", defaultValue);
         	Width = table.getNumberArray("width", defaultValue);
@@ -55,4 +56,4 @@ public class Vision extends Subsystem {
 		distance = (targetLength * FOVx_px)/(2 * Width * Math.tan(angleX));	
 		
 	}
-}
+}*/

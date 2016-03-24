@@ -11,6 +11,7 @@ public class SetShooter extends Command {
 	
     public SetShooter(double speed) {
     	requires(Robot.sh);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
