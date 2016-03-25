@@ -40,10 +40,12 @@ public class Turret extends Subsystem implements Constants {
 
 	public void homeDown() {
 			winch.set(TURRET_DOWNWARD_THROTTLE);
+			System.out.println("DOWN");
 	}
 	
 	public void homeUp() {
-		winch.set(-TURRET_UPWARD_THROTTLE);
+		winch.set(-0.5);
+		System.out.println("UP");
 		
 	}
 

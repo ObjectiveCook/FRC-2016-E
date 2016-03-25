@@ -48,7 +48,7 @@ public class Drivetrain extends Subsystem implements Constants {
 
 	public void arcadeDrive(double move, double rotate, boolean squared) {
 		drive.arcadeDrive(move, rotate, false);
-		SmartDashboard.putNumber("distance", getDistance());
+		SmartDashboard.putNumber("gyro", gyro.getAngle());
 	}
 
 	public void drive(double magnitude, double curve) {
