@@ -10,10 +10,10 @@ import main.Robot;
 /**
  *
  */
-public class HomeTurret extends Command implements Constants {
-	private DigitalInput lower = HardwareAdapter.lowerLimit;
+public class HomeTurretUp extends Command implements Constants {
+	private DigitalInput upper = HardwareAdapter.upperLimit;
 
-	public HomeTurret() {
+	public HomeTurretUp() {
 		requires(Robot.tr);
 	}
 
@@ -24,12 +24,12 @@ public class HomeTurret extends Command implements Constants {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.tr.homeDown();
+		Robot.tr.homeUp();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (!lower.get());
+		return (!upper.get());
 	}
 
 	// Called once after isFinished returns true

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.commands.drivetrain.Drive;
-import main.commands.turret.HomeTurret;
+import main.subsystems.Camera;
 import main.subsystems.Drivetrain;
 import main.subsystems.Shooter;
 import main.subsystems.Turret;
@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static RightAxe ra;
 	public static Turret tr;
 	public static Shooter sh;
+	public static Camera ca;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -43,6 +44,7 @@ public class Robot extends IterativeRobot {
 		ra = new RightAxe();
 		tr = new Turret();
 		sh = new Shooter();
+		ca = new Camera();
 		oi = new OI();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Drive());

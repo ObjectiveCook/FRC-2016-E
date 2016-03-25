@@ -8,6 +8,7 @@ import main.commands.drivetrain.RotateToAngle;
 import main.commands.shooter.Intake;
 import main.commands.shooter.SetShooter;
 import main.commands.shooter.Shoot;
+import main.commands.turret.HomeTurretUp;
 import main.commands.turret.SetAngle;
 
 /**
@@ -24,7 +25,7 @@ public class OI {
 	private void check() {
 		xbox.select.whenPressed(new RotateToAngle(-45, 1.0));
 		xbox.b.whenPressed(new DefaultShootingAuto());
-		xbox.x.whenPressed(new SetAngle(30));
+		xbox.x.whenPressed(new HomeTurretUp());
 		xbox.y.whenPressed(new SetAngle(10));
 		
 		xbox.leftBumper.whenPressed(new Intake());

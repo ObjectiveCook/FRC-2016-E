@@ -13,7 +13,7 @@ public class ReverseAuto extends CommandGroup {
     
     public  ReverseAuto() {
     	addSequential(new HomeTurret());
-    	addSequential(new DriveDistance(-24, 0.5));
+    	addSequential(new DriveDistance(-180, 0.5));
     	addSequential(new RotateToAngle(180, 0.8));
     	addSequential(new ResetGyro());
     }

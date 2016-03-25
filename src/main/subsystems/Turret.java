@@ -32,14 +32,19 @@ public class Turret extends Subsystem implements Constants {
 		winch.configEncoderCodesPerRev(LIFT_CODES_PER_REV);
 		winch.setPID(WINCH_P, WINCH_I, WINCH_D);
 		winch.setAllowableClosedLoopErr(WINCH_TOLERANCE);
-		winch.setForwardSoftLimit(60);
+		//winch.setForwardSoftLimit(60);
 		winch.setReverseSoftLimit(0);
-		winch.enableForwardSoftLimit(true);
-		winch.enableReverseSoftLimit(true);
+		winch.enableForwardSoftLimit(false);
+		winch.enableReverseSoftLimit(false);
 	}
 
-	public void home() {
+	public void homeDown() {
 			winch.set(TURRET_DOWNWARD_THROTTLE);
+	}
+	
+	public void homeUp() {
+		winch.set(-TURRET_UPWARD_THROTTLE);
+		
 	}
 
 	public void pivot(double yAxis) {
