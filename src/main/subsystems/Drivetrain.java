@@ -32,11 +32,11 @@ public class Drivetrain extends Subsystem implements Constants {
 		setControlMode(VBUS);
 		setBrakeMode(COAST);
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		left.configEncoderCodesPerRev(49);
+		left.configEncoderCodesPerRev(57);
 		left.setPosition(0);
 
 		right.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		right.configEncoderCodesPerRev(49);
+		right.configEncoderCodesPerRev(57);
 		right.setPosition(0);
 
 		drive = new RobotDrive(left, right);

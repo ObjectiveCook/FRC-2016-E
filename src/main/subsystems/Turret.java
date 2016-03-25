@@ -23,7 +23,8 @@ public class Turret extends Subsystem implements Constants {
 	}
 	
 	public Turret() {
-		setCtrlMode(POS);
+		//reset();
+		setCtrlMode(VBUS);
 		winch.setInverted(true);
 		winch.enableBrakeMode(BRAKE);
 		winch.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -31,6 +32,10 @@ public class Turret extends Subsystem implements Constants {
 		winch.configEncoderCodesPerRev(LIFT_CODES_PER_REV);
 		winch.setPID(WINCH_P, WINCH_I, WINCH_D);
 		winch.setAllowableClosedLoopErr(WINCH_TOLERANCE);
+		winch.setForwardSoftLimit(60);
+		winch.setReverseSoftLimit(0);
+		winch.enableForwardSoftLimit(true);
+		winch.enableReverseSoftLimit(true);
 	}
 
 	public void home() {

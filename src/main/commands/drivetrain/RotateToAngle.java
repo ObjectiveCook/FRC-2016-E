@@ -25,12 +25,11 @@ public class RotateToAngle extends Command {
 
 	public RotateToAngle(double degrees, double maxSpeed, double kp, double ki, double kd) {
 		requires(Robot.dt);
-		current = gyro.getAngle();
 		kD = kd;
 		this.maxSpeed = maxSpeed;
 		angle = degrees;
-		buildController();
-		//setTimeout(2);
+		//buildController();
+		setTimeout(2);
 	}
 
 	public RotateToAngle(double angle, double maxSpeed) {
@@ -38,19 +37,19 @@ public class RotateToAngle extends Command {
 		current = gyro.getAngle();
 		this.angle = angle;
 		this.maxSpeed = maxSpeed;
-		buildController();
-		//setTimeout(2);
+		//buildController();
+		setTimeout(2);
 	}
 
 	public RotateToAngle(double degrees) {
 		requires(Robot.dt);
 		current = gyro.getAngle();
 		angle = degrees;
-		buildController();
+		//buildController();
 	}
 
 	private void buildController() {
-
+		current = gyro.getAngle();
 		pid = new PIDController(kP, kI, kD, new PIDSource() {
 			PIDSourceType sourceType = PIDSourceType.kDisplacement;
 
@@ -79,25 +78,32 @@ public class RotateToAngle extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		buildController();
 		pid.reset();
 		pid.enable();
+		
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		//pid.enable();
+		System.out.println("TURNING");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		double error = pid.getError();
 
-		return ((error >= 0 && error <= TOLERANCE) || pid.onTarget());
+		return (pid.onTarget());
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		pid.reset();
 		pid.disable();
 		Robot.dt.arcadeDrive(0, 0, false);
+		System.out.println("DONE!");
 	}
 
 	// Called when another command which requires one or more of the same

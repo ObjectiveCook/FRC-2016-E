@@ -1,6 +1,7 @@
 package main.commands.turret;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import main.Constants;
 import main.HardwareAdapter;
@@ -12,6 +13,8 @@ import main.Robot;
 public class SetAngle extends Command implements Constants{
 	private double angle;
 	private CANTalon winch = HardwareAdapter.winch;
+	private DigitalInput upper = HardwareAdapter.upperLimit;
+	private DigitalInput lower = HardwareAdapter.lowerLimit;
 	
     public SetAngle(double angle) {
     	requires(Robot.tr);
@@ -32,7 +35,7 @@ public class SetAngle extends Command implements Constants{
     protected boolean isFinished() {
     	double error = winch.getClosedLoopError();
     	
-        return (error >= 0 && error <= WINCH_TOLERANCE);
+        return ((error >= 0 && error <= WINCH_TOLERANCE) || (!upper.get()));
     }
 
     // Called once after isFinished returns true

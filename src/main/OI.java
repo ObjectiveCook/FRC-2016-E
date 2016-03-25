@@ -1,6 +1,7 @@
 package main;
 
 import lib.XboxController;
+import main.commands.autonomous.DefaultShootingAuto;
 import main.commands.battleaxes.DeployLeft;
 import main.commands.battleaxes.DeployRight;
 import main.commands.drivetrain.RotateToAngle;
@@ -21,10 +22,10 @@ public class OI {
 	}
 	
 	private void check() {
-		xbox.a.whenPressed(new RotateToAngle(-45, 1.0));
-		xbox.b.whenPressed(new RotateToAngle(45, 1.0));
-		xbox.x.whenPressed(new SetAngle(0));
-		xbox.y.whenPressed(new SetAngle(30));
+		xbox.select.whenPressed(new RotateToAngle(-45, 1.0));
+		xbox.b.whenPressed(new DefaultShootingAuto());
+		xbox.x.whenPressed(new SetAngle(30));
+		xbox.y.whenPressed(new SetAngle(10));
 		
 		xbox.leftBumper.whenPressed(new Intake());
 		xbox.leftBumper.whenReleased(new SetShooter(0));
