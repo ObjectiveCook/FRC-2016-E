@@ -12,6 +12,7 @@ import main.subsystems.Camera;
 import main.subsystems.Drivetrain;
 import main.subsystems.Shooter;
 import main.subsystems.Turret;
+import main.subsystems.Vision;
 import main.subsystems.battleaxes.LeftAxe;
 import main.subsystems.battleaxes.RightAxe;
 
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static Turret tr;
 	public static Shooter sh;
 	public static Camera ca;
+	public static Vision vi;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -45,6 +47,7 @@ public class Robot extends IterativeRobot {
 		tr = new Turret();
 		sh = new Shooter();
 		ca = new Camera();
+		vi = new Vision();
 		oi = new OI();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Drive());
