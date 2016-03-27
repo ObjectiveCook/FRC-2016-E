@@ -12,39 +12,39 @@ import main.Robot;
 /**
  *
  */
-public class RotateToAngle extends Command {
+public class VisionRotate extends Command {
 	private double angle, maxSpeed;
 	private static double kP = 2.0;
 	private static double kI = 1.0;
 	private static double kD = 1.0;
-	private static final double TOLERANCE = 5.0;
+	private static final double TOLERANCE = 1.0;
 
 	private PIDController pid;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
 	private double current;
 
-	public RotateToAngle(double degrees, double maxSpeed, double kp, double ki, double kd) {
+	public VisionRotate(double degrees, double maxSpeed, double kp, double ki, double kd) {
 		requires(Robot.dt);
 		kD = kd;
 		this.maxSpeed = maxSpeed;
-		angle = degrees;
+		//angle = degrees;
 		//buildController();
 		setTimeout(2);
 	}
 
-	public RotateToAngle(double angle, double maxSpeed) {
+	public VisionRotate(double angle, double maxSpeed) {
 		requires(Robot.dt);
 		current = gyro.getAngle();
-		this.angle = angle;
+		//this.angle = angle;
 		this.maxSpeed = maxSpeed;
 		//buildController();
 		setTimeout(2);
 	}
 
-	public RotateToAngle(double degrees) {
+	public VisionRotate(double degrees) {
 		requires(Robot.dt);
 		current = gyro.getAngle();
-		angle = degrees;
+		//angle = degrees;
 		//buildController();
 	}
 

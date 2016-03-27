@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import lib.DriveCamera;
 import main.commands.drivetrain.Drive;
-import main.subsystems.Camera;
 import main.subsystems.Drivetrain;
 import main.subsystems.Shooter;
 import main.subsystems.Turret;
@@ -30,8 +30,9 @@ public class Robot extends IterativeRobot {
 	public static RightAxe ra;
 	public static Turret tr;
 	public static Shooter sh;
-	public static Camera ca;
 	public static Vision vi;
+	
+	public static DriveCamera camera;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -46,9 +47,12 @@ public class Robot extends IterativeRobot {
 		ra = new RightAxe();
 		tr = new Turret();
 		sh = new Shooter();
-		ca = new Camera();
 		vi = new Vision();
 		oi = new OI();
+		
+		camera = new DriveCamera("cam1", 60);
+		camera.start();
+		
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Drive());
 //        chooser.addObject("My Auto", new MyAutoCommand());

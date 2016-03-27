@@ -12,7 +12,7 @@ import main.Robot;
 /**
  *
  */
-public class RotateToAngle extends Command {
+public class TurnToAngle extends Command {
 	private double angle, maxSpeed;
 	private static double kP = 2.0;
 	private static double kI = 1.0;
@@ -23,7 +23,7 @@ public class RotateToAngle extends Command {
 	private AnalogGyro gyro = HardwareAdapter.gyro;
 	private double current;
 
-	public RotateToAngle(double degrees, double maxSpeed, double kp, double ki, double kd) {
+	public TurnToAngle(double degrees, double maxSpeed, double kp, double ki, double kd) {
 		requires(Robot.dt);
 		kD = kd;
 		this.maxSpeed = maxSpeed;
@@ -32,7 +32,7 @@ public class RotateToAngle extends Command {
 		setTimeout(2);
 	}
 
-	public RotateToAngle(double angle, double maxSpeed) {
+	public TurnToAngle(double angle, double maxSpeed) {
 		requires(Robot.dt);
 		current = gyro.getAngle();
 		this.angle = angle;
@@ -41,7 +41,7 @@ public class RotateToAngle extends Command {
 		setTimeout(2);
 	}
 
-	public RotateToAngle(double degrees) {
+	public TurnToAngle(double degrees) {
 		requires(Robot.dt);
 		current = gyro.getAngle();
 		angle = degrees;
@@ -73,8 +73,7 @@ public class RotateToAngle extends Command {
 		});
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(current + Robot.vi.angleX);
-		System.out.println(current + angle);
+		pid.setSetpoint(angle);
 	}
 
 	// Called just before this Command runs the first time

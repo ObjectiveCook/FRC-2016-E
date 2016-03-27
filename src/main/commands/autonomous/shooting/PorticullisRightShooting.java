@@ -1,4 +1,4 @@
-package main.commands.autonomous;
+package main.commands.autonomous.shooting;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import main.commands.battleaxes.DeployLeft;
@@ -9,16 +9,15 @@ import main.commands.shooter.Shoot;
 import main.commands.turret.HomeTurretUp;
 
 /**
- * Crosses the Low-bar and Porticullis
+ * Crosses the Porticullis (POSITION #5), turns and shoots
  */
-public class DefaultShootingAuto extends CommandGroup {
+public class PorticullisRightShooting extends CommandGroup {
     
-    public  DefaultShootingAuto() {
+    public  PorticullisRightShooting() {
     	addSequential(new DeployLeft());
     	addSequential(new DeployRight());
-//    	addSequential(new HomeTurret());
     	addSequential(new DriveDistance(Math.pow(15, 2), 0.5));
-    	addSequential(new RotateToAngle(53, 1.0));
+    	addSequential(new RotateToAngle(-53, 1.0));
     	addSequential(new DriveDistance(74, 0.5));
     	addSequential(new HomeTurretUp());
     	addSequential(new Shoot());
