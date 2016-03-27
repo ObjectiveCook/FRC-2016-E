@@ -29,13 +29,11 @@ public class VisionDrive extends Command {
 		kI = ki;
 		kD = kd;
 		this.maxSpeed = maxSpeed;
-		buildController();
 	}
 
 	public VisionDrive(double maxSpeed) {
 		requires(Robot.dt);
 		this.maxSpeed = maxSpeed;
-		buildController();
 	}
 
 	private void buildController() {
@@ -66,13 +64,15 @@ public class VisionDrive extends Command {
 
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(Robot.vi.distance);
+		pid.setSetpoint((Robot.vi.distance));
+		System.out.println(Robot.vi.distance);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		// Get everything in a safe starting state.
 		Robot.dt.reset();
+		buildController();
 		pid.reset();
 		pid.enable();
 	}

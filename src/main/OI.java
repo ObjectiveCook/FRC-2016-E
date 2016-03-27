@@ -7,6 +7,7 @@ import main.commands.drivetrain.RotateToAngle;
 import main.commands.shooter.Intake;
 import main.commands.shooter.SetShooter;
 import main.commands.shooter.Shoot;
+import main.commands.turret.HomeTurretUp;
 import main.commands.vision.AutoTarget;
 import main.commands.vision.TargetGoal;
 
@@ -23,7 +24,7 @@ public class OI {
 	
 	private void check() {
 		xbox.x.whenPressed(new TargetGoal());
-		xbox.y.whenPressed(new RotateToAngle(Robot.vi.angleX, 0.5));
+		xbox.y.whenPressed(new HomeTurretUp());
 		xbox.a.whenPressed(new RotateToAngle(45, 0.5));
 		xbox.b.whenPressed(new AutoTarget());
 		xbox.leftBumper.whenPressed(new Intake());

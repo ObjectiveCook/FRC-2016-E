@@ -39,14 +39,16 @@ public class Turret extends Subsystem implements Constants {
 	}
 
 	public void homeDown() {
-		while (lower.get())
 			winch.set(TURRET_DOWNWARD_THROTTLE);
 	}
 
 	public void homeUp() {
-		while (upper.get())
 			winch.set(-TURRET_UPWARD_THROTTLE);
 
+	}
+	
+	public void stop() {
+		winch.set(0);
 	}
 
 	public void pivot(double yAxis) {

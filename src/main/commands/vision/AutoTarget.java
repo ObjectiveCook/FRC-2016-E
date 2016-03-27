@@ -15,14 +15,15 @@ public class AutoTarget extends CommandGroup {
     	addSequential(new TargetGoal());
     	//addSequential(new WaitCommand(0.5));
     	addSequential(new VisionRotate(0.6));
-    	addSequential(new WaitCommand(0.333));
+    	//addSequential(new WaitCommand(0.333));
     	addSequential(new TargetGoal());
     	//addSequential(new WaitCommand(0.5));
     	addSequential(new VisionRotate(0.6));
     	addSequential(new TargetGoal());
     	//addSequential(new WaitCommand(0.5));
     	addSequential(new VisionRotate(0.6));
-    	addSequential(new WaitCommand(0.333));
+    	//addSequential(new WaitCommand(0.333));
+    	addSequential(new VisionDrive(0.5));
     	addSequential(new Shoot());
     }
 }
