@@ -1,4 +1,4 @@
-package main.commands.drivetrain;
+package main.commands.vision;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.PIDController;
@@ -21,35 +21,16 @@ public class VisionRotate extends Command {
 
 	private PIDController pid;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
-	private double current;
 
-	public VisionRotate(double degrees, double maxSpeed, double kp, double ki, double kd) {
+	public VisionRotate(double maxSpeed) {
 		requires(Robot.dt);
-		kD = kd;
 		this.maxSpeed = maxSpeed;
-		//angle = degrees;
-		//buildController();
 		setTimeout(2);
 	}
 
-	public VisionRotate(double angle, double maxSpeed) {
-		requires(Robot.dt);
-		current = gyro.getAngle();
-		//this.angle = angle;
-		this.maxSpeed = maxSpeed;
-		//buildController();
-		setTimeout(2);
-	}
-
-	public VisionRotate(double degrees) {
-		requires(Robot.dt);
-		current = gyro.getAngle();
-		//angle = degrees;
-		//buildController();
-	}
 
 	private void buildController() {
-		current = gyro.getAngle();
+		angle = gyro.getAngle();
 		pid = new PIDController(kP, kI, kD, new PIDSource() {
 			PIDSourceType sourceType = PIDSourceType.kDisplacement;
 
@@ -73,8 +54,7 @@ public class VisionRotate extends Command {
 		});
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(current + Robot.vi.angleX);
-		System.out.println(current + angle);
+		pid.setSetpoint(angle + Robot.vi.angleX);
 	}
 
 	// Called just before this Command runs the first time
@@ -89,13 +69,10 @@ public class VisionRotate extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		//pid.enable();
-		System.out.println("TURNING");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		double error = pid.getError();
-
 		return (pid.onTarget());
 	}
 
@@ -104,7 +81,6 @@ public class VisionRotate extends Command {
 		pid.reset();
 		pid.disable();
 		Robot.dt.arcadeDrive(0, 0, false);
-		System.out.println("DONE!");
 	}
 
 	// Called when another command which requires one or more of the same

@@ -10,7 +10,7 @@ import main.HardwareAdapter;
 import main.Robot;
 
 /**
- *
+ * FIELD-ORIENTED ANGLES
  */
 public class TurnToAngle extends Command {
 	private double angle, maxSpeed;
@@ -21,35 +21,21 @@ public class TurnToAngle extends Command {
 
 	private PIDController pid;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
-	private double current;
-
-	public TurnToAngle(double degrees, double maxSpeed, double kp, double ki, double kd) {
-		requires(Robot.dt);
-		kD = kd;
-		this.maxSpeed = maxSpeed;
-		angle = degrees;
-		//buildController();
-		setTimeout(2);
-	}
 
 	public TurnToAngle(double angle, double maxSpeed) {
 		requires(Robot.dt);
-		current = gyro.getAngle();
 		this.angle = angle;
 		this.maxSpeed = maxSpeed;
-		//buildController();
 		setTimeout(2);
 	}
 
 	public TurnToAngle(double degrees) {
 		requires(Robot.dt);
-		current = gyro.getAngle();
 		angle = degrees;
-		//buildController();
+		setTimeout(2);
 	}
 
 	private void buildController() {
-		current = gyro.getAngle();
 		pid = new PIDController(kP, kI, kD, new PIDSource() {
 			PIDSourceType sourceType = PIDSourceType.kDisplacement;
 
