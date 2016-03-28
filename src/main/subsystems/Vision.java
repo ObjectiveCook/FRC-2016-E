@@ -13,7 +13,8 @@ public class Vision extends Subsystem {
 
 	private final double FOVx_px = 160;
 	private final double FOVx_deg = 47;
-	private final double targetLength = 20; // Feet
+	private final double targetLength = 1.667; // Feet
+	private final double targetHeight = 6.667; // Feet
 	private double[] defaultValue = new double[0];
 	private double centerX, centerY, width, height;
 	public double angleX, distance;
@@ -46,8 +47,8 @@ public class Vision extends Subsystem {
 	
 	public boolean targetGoal() {
 		angleX = (((centerX - FOVx_px)/FOVx_px) * FOVx_deg) - 15.0;
-		System.out.println("ANGLE: " + angleX);
-		distance = (targetLength * FOVx_px)/(2 * width * Math.tan(FOVx_deg/2));
+		double range = (targetWidth/2)/(width/2/6.8085);
+		distance = Math.sqrt(Math.pow(range,2) - Math.pow(targetHeight,2));
 		SmartDashboard.putNumber("Angle", angleX);
 		SmartDashboard.putNumber("Distance", distance);
 		return true;
