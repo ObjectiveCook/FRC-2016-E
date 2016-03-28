@@ -30,20 +30,20 @@ public class DriveDistance extends Command {
 		kI = ki;
 		kD = kd;
 		this.maxSpeed = maxSpeed;
-		this.distance = -distance;
+		this.distance = distance;
 		buildController();
 	}
 
 	public DriveDistance(double distance, double maxSpeed) {
 		requires(Robot.dt);
 		this.maxSpeed = maxSpeed;
-		this.distance = -distance;
+		this.distance = distance;
 		buildController();
 	}
 
 	public DriveDistance(double distance) {
 		requires(Robot.dt);
-		this.distance = -distance;
+		this.distance = distance;
 		buildController();
 	}
 

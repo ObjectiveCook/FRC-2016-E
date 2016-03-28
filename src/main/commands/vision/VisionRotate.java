@@ -1,4 +1,4 @@
-package main.commands.drivetrain;
+package main.commands.vision;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.PIDController;
@@ -10,35 +10,28 @@ import main.HardwareAdapter;
 import main.Robot;
 
 /**
- * ROBGOT-ORIENTED ANGLES
+ *
  */
-public class RotateToAngle extends Command {
-	private double angle, current, maxSpeed;
-	private static double kP = 1.5;
+public class VisionRotate extends Command {
+	private double angle, maxSpeed, multiplier;
+	private static double kP = 2.0;
 	private static double kI = 1.0;
 	private static double kD = 1.0;
-	private static final double TOLERANCE = 5.0;
+	private static final double TOLERANCE = 2.5;
 
 	private PIDController pid;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
 
-
-	public RotateToAngle(double angle, double maxSpeed) {
+	public VisionRotate(double maxSpeed, double multiplier) {
 		requires(Robot.dt);
-		this.angle = angle;
 		this.maxSpeed = maxSpeed;
-		//buildController();
+		this.multiplier = multiplier;
 		setTimeout(2);
 	}
 
-	public RotateToAngle(double degrees) {
-		requires(Robot.dt);
-		angle = degrees;
-		//buildController();
-	}
 
 	private void buildController() {
-		current = gyro.getAngle();
+		angle = gyro.getAngle();
 		pid = new PIDController(kP, kI, kD, new PIDSource() {
 			PIDSourceType sourceType = PIDSourceType.kDisplacement;
 
@@ -62,8 +55,7 @@ public class RotateToAngle extends Command {
 		});
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(current + angle);
-		System.out.println(current + angle);
+		pid.setSetpoint(angle + (Robot.vi.angleX * multiplier));
 	}
 
 	// Called just before this Command runs the first time

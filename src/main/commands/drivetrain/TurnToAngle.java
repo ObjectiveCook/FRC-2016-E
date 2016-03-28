@@ -10,11 +10,11 @@ import main.HardwareAdapter;
 import main.Robot;
 
 /**
- * ROBGOT-ORIENTED ANGLES
+ * FIELD-ORIENTED ANGLES
  */
-public class RotateToAngle extends Command {
-	private double angle, current, maxSpeed;
-	private static double kP = 1.5;
+public class TurnToAngle extends Command {
+	private double angle, maxSpeed;
+	private static double kP = 2.0;
 	private static double kI = 1.0;
 	private static double kD = 1.0;
 	private static final double TOLERANCE = 5.0;
@@ -22,23 +22,20 @@ public class RotateToAngle extends Command {
 	private PIDController pid;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
 
-
-	public RotateToAngle(double angle, double maxSpeed) {
+	public TurnToAngle(double angle, double maxSpeed) {
 		requires(Robot.dt);
 		this.angle = angle;
 		this.maxSpeed = maxSpeed;
-		//buildController();
 		setTimeout(2);
 	}
 
-	public RotateToAngle(double degrees) {
+	public TurnToAngle(double degrees) {
 		requires(Robot.dt);
 		angle = degrees;
-		//buildController();
+		setTimeout(2);
 	}
 
 	private void buildController() {
-		current = gyro.getAngle();
 		pid = new PIDController(kP, kI, kD, new PIDSource() {
 			PIDSourceType sourceType = PIDSourceType.kDisplacement;
 
@@ -62,8 +59,7 @@ public class RotateToAngle extends Command {
 		});
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(current + angle);
-		System.out.println(current + angle);
+		pid.setSetpoint(angle);
 	}
 
 	// Called just before this Command runs the first time
@@ -78,10 +74,13 @@ public class RotateToAngle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		//pid.enable();
+		System.out.println("TURNING");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		double error = pid.getError();
+
 		return (pid.onTarget());
 	}
 
@@ -90,6 +89,7 @@ public class RotateToAngle extends Command {
 		pid.reset();
 		pid.disable();
 		Robot.dt.arcadeDrive(0, 0, false);
+		System.out.println("DONE!");
 	}
 
 	// Called when another command which requires one or more of the same

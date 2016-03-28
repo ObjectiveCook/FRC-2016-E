@@ -30,14 +30,17 @@ public class Drivetrain extends Subsystem implements Constants {
 		gyro.reset();
 
 		setControlMode(VBUS);
-		setBrakeMode(COAST);
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		left.configEncoderCodesPerRev(57);
 		left.setPosition(0);
+		left.enableBrakeMode(true);
+		leftSlave.enableBrakeMode(true);
 
 		right.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		right.configEncoderCodesPerRev(57);
 		right.setPosition(0);
+		right.enableBrakeMode(true);
+		rightSlave.enableBrakeMode(true);
 
 		drive = new RobotDrive(left, right);
 		// drive.setSafetyEnabled(true);
@@ -48,7 +51,7 @@ public class Drivetrain extends Subsystem implements Constants {
 
 	public void arcadeDrive(double move, double rotate, boolean squared) {
 		drive.arcadeDrive(move, rotate, false);
-		SmartDashboard.putNumber("distance", getDistance());
+		System.out.println("GYRO:" + gyro.getAngle());
 	}
 
 	public void drive(double magnitude, double curve) {
@@ -75,7 +78,9 @@ public class Drivetrain extends Subsystem implements Constants {
 
 	public void setBrakeMode(boolean brake) {
 		left.enableBrakeMode(brake);
+		leftSlave.enableBrakeMode(brake);
 		right.enableBrakeMode(brake);
+		leftSlave.enableBrakeMode(brake);
 	}
 
 }

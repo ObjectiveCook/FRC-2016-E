@@ -1,4 +1,4 @@
-package main.commands.drivetrain;
+package main.commands.vision;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.PIDController;
@@ -10,86 +10,89 @@ import main.HardwareAdapter;
 import main.Robot;
 
 /**
- * ROBGOT-ORIENTED ANGLES
+ *
  */
-public class RotateToAngle extends Command {
-	private double angle, current, maxSpeed;
-	private static double kP = 1.5;
-	private static double kI = 1.0;
-	private static double kD = 1.0;
-	private static final double TOLERANCE = 5.0;
+public class VisionDrive extends Command {
 
-	private PIDController pid;
+	private static final double TOLERANCE = 5;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
+	private PIDController pid;
+	private double maxSpeed = 0.6; 
 
+	private double kP = 2.0;
+	private double kI = 0.0;
+	private double kD = 1.0;
 
-	public RotateToAngle(double angle, double maxSpeed) {
+	public VisionDrive(double maxSpeed, double kp, double ki, double kd) {
 		requires(Robot.dt);
-		this.angle = angle;
+		kP = kp;
+		kI = ki;
+		kD = kd;
 		this.maxSpeed = maxSpeed;
-		//buildController();
-		setTimeout(2);
 	}
 
-	public RotateToAngle(double degrees) {
+	public VisionDrive(double maxSpeed) {
 		requires(Robot.dt);
-		angle = degrees;
-		//buildController();
+		this.maxSpeed = maxSpeed;
 	}
 
 	private void buildController() {
-		current = gyro.getAngle();
+
 		pid = new PIDController(kP, kI, kD, new PIDSource() {
-			PIDSourceType sourceType = PIDSourceType.kDisplacement;
+			PIDSourceType m_sourceType = PIDSourceType.kDisplacement;
 
 			public double pidGet() {
-				return gyro.getAngle();
+				return Robot.dt.getDistance();
 			}
 
 			public void setPIDSourceType(PIDSourceType pidSource) {
-				sourceType = pidSource;
+				m_sourceType = pidSource;
 			}
 
 			public PIDSourceType getPIDSourceType() {
-				return sourceType;
+				return m_sourceType;
 			}
 		}, new PIDOutput() {
 
 			public void pidWrite(double d) {
-				// Spin with the magnitude returned by the PID calculation,
-				Robot.dt.arcadeDrive(0, -d, false);
+				// Drive with the magnitude returned by the PID calculation,
+				// and curve the opposite way from the current yaw reading
+				// (Divide yaw by 180 so as to normalize to -1.0 / + 1.0)
+				Robot.dt.drive(-d, 0);
 			}
 		});
+
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(current + angle);
-		System.out.println(current + angle);
+		pid.setSetpoint((Robot.vi.distance));
+		System.out.println(Robot.vi.distance);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		// Get everything in a safe starting state.
+		Robot.dt.reset();
 		buildController();
 		pid.reset();
 		pid.enable();
-		
-
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		//pid.enable();
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (pid.onTarget());
+		double error = pid.getError();
+		return (error >= 0 && error <= TOLERANCE);
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		pid.reset();
+		// Stop PID and the wheels
 		pid.disable();
-		Robot.dt.arcadeDrive(0, 0, false);
+		Robot.dt.drive(0, 0);
 	}
 
 	// Called when another command which requires one or more of the same

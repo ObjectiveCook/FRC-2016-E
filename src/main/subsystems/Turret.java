@@ -21,9 +21,9 @@ public class Turret extends Subsystem implements Constants {
 	public void initDefaultCommand() {
 		setDefaultCommand(new Pivot());
 	}
-	
+
 	public Turret() {
-		//reset();
+		// reset();
 		setCtrlMode(VBUS);
 		winch.setInverted(false);
 		winch.enableBrakeMode(BRAKE);
@@ -32,27 +32,23 @@ public class Turret extends Subsystem implements Constants {
 		winch.configEncoderCodesPerRev(LIFT_CODES_PER_REV);
 		winch.setPID(WINCH_P, WINCH_I, WINCH_D);
 		winch.setAllowableClosedLoopErr(WINCH_TOLERANCE);
-		//winch.setForwardSoftLimit(60);
+		winch.setForwardSoftLimit(63 );
 		winch.setReverseSoftLimit(0);
 		winch.enableForwardSoftLimit(false);
 		winch.enableReverseSoftLimit(false);
 	}
 
 	public void homeDown() {
-			winch.set(0.2);
-			if(winch.get() < 0)
-				System.out.println("DOWN");
-			else
-				System.out.println("UP");
+			winch.set(TURRET_DOWNWARD_THROTTLE);
+	}
+
+	public void homeUp() {
+			winch.set(-TURRET_UPWARD_THROTTLE);
+
 	}
 	
-	public void homeUp() {
-		winch.set(-0.2);
-		if(winch.get() < 0)
-			System.out.println("DOWN");
-		else
-			System.out.println("UP");
-		
+	public void stop() {
+		winch.set(0);
 	}
 
 	public void pivot(double yAxis) {
@@ -62,12 +58,9 @@ public class Turret extends Subsystem implements Constants {
 			winch.set(0);
 		else
 			winch.set(yAxis);
-		
-		SmartDashboard.putBoolean("Upper", !upper.get());
-		SmartDashboard.putBoolean("Lpper", !lower.get());
 
 	}
-	
+
 	public void reset() {
 		winch.setPosition(0);
 	}
@@ -79,6 +72,5 @@ public class Turret extends Subsystem implements Constants {
 	public void setCtrlMode(TalonControlMode mode) {
 		winch.changeControlMode(mode);
 	}
-
 
 }

@@ -1,4 +1,4 @@
-package main.commands.autonomous;
+package main.commands.autonomous.crossing;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import main.commands.drivetrain.DriveDistance;

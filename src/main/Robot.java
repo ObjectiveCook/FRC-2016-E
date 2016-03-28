@@ -7,11 +7,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import lib.DriveCamera;
 import main.commands.drivetrain.Drive;
-import main.subsystems.Camera;
 import main.subsystems.Drivetrain;
 import main.subsystems.Shooter;
 import main.subsystems.Turret;
+import main.subsystems.Vision;
 import main.subsystems.battleaxes.LeftAxe;
 import main.subsystems.battleaxes.RightAxe;
 
@@ -23,16 +24,19 @@ import main.subsystems.battleaxes.RightAxe;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	public static Integer position;
 	public static OI oi;
 	public static Drivetrain dt;
 	public static LeftAxe la;
 	public static RightAxe ra;
 	public static Turret tr;
 	public static Shooter sh;
-	public static Camera ca;
+	public static Vision vi;
+	
+	public static DriveCamera camera;
 
     Command autonomousCommand;
-    SendableChooser chooser;
+    SendableChooser commandChooser, positionChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -44,12 +48,31 @@ public class Robot extends IterativeRobot {
 		ra = new RightAxe();
 		tr = new Turret();
 		sh = new Shooter();
-		ca = new Camera();
+		vi = new Vision();
 		oi = new OI();
-        chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new Drive());
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+		
+		camera = new DriveCamera("cam1", 60);
+		camera.start();
+		
+        positionChooser = new SendableChooser();
+        positionChooser.addDefault("1", 1);
+        positionChooser.addObject("2", 2);
+        positionChooser.addObject("3", 3);
+        positionChooser.addObject("4", 4);
+        positionChooser.addObject("5", 5);
+        SmartDashboard.putData("Auto position", positionChooser);
+        
+        commandChooser = new SendableChooser();
+        commandChooser.addDefault("Low-bar", new Drive());
+        commandChooser.addObject("Porticullis", new Drive());
+        commandChooser.addObject("Cheval de Frise", new Drive());
+        commandChooser.addObject("Moat", new Drive());
+        commandChooser.addObject("Ramparts", new Drive());
+        commandChooser.addObject("Rough-terrain", new Drive());
+        commandChooser.addObject("Rock wall", new Drive());
+        SmartDashboard.putData("Auto mode", commandChooser);
+
+
     }
 	
 	/**
@@ -75,18 +98,8 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
+        autonomousCommand = (Command) commandChooser.getSelected();
+        position = (Integer) positionChooser.getSelected();
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

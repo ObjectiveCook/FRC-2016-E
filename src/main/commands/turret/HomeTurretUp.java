@@ -34,7 +34,7 @@ public class HomeTurretUp extends Command implements Constants {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		//Robot.tr.reset();
+		Robot.tr.stop();
 	}
 
 	// Called when another command which requires one or more of the same
