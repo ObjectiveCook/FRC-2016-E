@@ -2,16 +2,14 @@ package main.commands.autonomous.shooting;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import main.Robot;
-import main.commands.drivetrain.DriveDistance;
 import main.commands.drivetrain.RotateToAngle;
-import main.commands.shooter.Shoot;
-import main.commands.vision.AutoTarget;
+import main.commands.drivetrain.TurnToAngle;
 
 /**
  *
  */
 public class Shooting extends CommandGroup {
-    private Integer position = Robot.position;
+    private Integer position = 1;
     
     public  Shooting() {
     	if(position == 1) {

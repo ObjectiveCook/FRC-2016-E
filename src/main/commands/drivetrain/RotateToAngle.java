@@ -14,7 +14,7 @@ import main.Robot;
  */
 public class RotateToAngle extends Command {
 	private double angle, current, maxSpeed;
-	private static double kP = 2.0;
+	private static double kP = 1.5;
 	private static double kI = 1.0;
 	private static double kD = 1.0;
 	private static final double TOLERANCE = 5.0;

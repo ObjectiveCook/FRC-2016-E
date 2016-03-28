@@ -13,18 +13,19 @@ import main.Robot;
  *
  */
 public class VisionRotate extends Command {
-	private double angle, maxSpeed;
+	private double angle, maxSpeed, multiplier;
 	private static double kP = 2.0;
 	private static double kI = 1.0;
 	private static double kD = 1.0;
-	private static final double TOLERANCE = 1.0;
+	private static final double TOLERANCE = 2.5;
 
 	private PIDController pid;
 	private AnalogGyro gyro = HardwareAdapter.gyro;
 
-	public VisionRotate(double maxSpeed) {
+	public VisionRotate(double maxSpeed, double multiplier) {
 		requires(Robot.dt);
 		this.maxSpeed = maxSpeed;
+		this.multiplier = multiplier;
 		setTimeout(2);
 	}
 
@@ -54,7 +55,7 @@ public class VisionRotate extends Command {
 		});
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(angle + Robot.vi.angleX);
+		pid.setSetpoint(angle + (Robot.vi.angleX * multiplier));
 	}
 
 	// Called just before this Command runs the first time

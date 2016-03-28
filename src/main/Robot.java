@@ -63,7 +63,13 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto position", positionChooser);
         
         commandChooser = new SendableChooser();
-        commandChooser.addDefault("Default Auto", new Drive());
+        commandChooser.addDefault("Low-bar", new Drive());
+        commandChooser.addObject("Porticullis", new Drive());
+        commandChooser.addObject("Cheval de Frise", new Drive());
+        commandChooser.addObject("Moat", new Drive());
+        commandChooser.addObject("Ramparts", new Drive());
+        commandChooser.addObject("Rough-terrain", new Drive());
+        commandChooser.addObject("Rock wall", new Drive());
         SmartDashboard.putData("Auto mode", commandChooser);
 
 

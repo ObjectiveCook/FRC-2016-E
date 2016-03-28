@@ -59,9 +59,6 @@ public class Turret extends Subsystem implements Constants {
 		else
 			winch.set(yAxis);
 
-		SmartDashboard.putBoolean("Upper", !upper.get());
-		SmartDashboard.putBoolean("Lpper", !lower.get());
-
 	}
 
 	public void reset() {
