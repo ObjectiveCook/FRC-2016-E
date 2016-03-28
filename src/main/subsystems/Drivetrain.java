@@ -46,7 +46,7 @@ public class Drivetrain extends Subsystem implements Constants {
 		// drive.setSafetyEnabled(true);
 		drive.setExpiration(0.1);
 		// drive.setSensitivity(0.3);
-		drive.setMaxOutput(1.0);
+		drive.setMaxOutput(0.85);
 	}
 
 	public void arcadeDrive(double move, double rotate, boolean squared) {

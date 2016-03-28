@@ -62,7 +62,7 @@ public class RotateToAngle extends Command {
 		});
 		pid.setAbsoluteTolerance(TOLERANCE);
 		pid.setOutputRange((maxSpeed * -1.0), maxSpeed);
-		pid.setSetpoint(current + Robot.vi.angleX);
+		pid.setSetpoint(current + angle);
 		System.out.println(current + angle);
 	}
 
