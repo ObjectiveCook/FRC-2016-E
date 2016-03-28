@@ -1,15 +1,15 @@
 package main;
 
 import lib.XboxController;
+import main.commands.autonomous.crossing.DefaultAuto;
+import main.commands.autonomous.shooting.DefaultShootingAuto;
 import main.commands.battleaxes.DeployLeft;
 import main.commands.battleaxes.DeployRight;
 import main.commands.drivetrain.RotateToAngle;
 import main.commands.shooter.Intake;
 import main.commands.shooter.SetShooter;
 import main.commands.shooter.Shoot;
-import main.commands.turret.HomeTurretUp;
 import main.commands.vision.AutoTarget;
-import main.commands.vision.TargetGoal;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,9 +23,8 @@ public class OI {
 	}
 	
 	private void check() {
-		xbox.x.whenPressed(new TargetGoal());
-		xbox.y.whenPressed(new HomeTurretUp());
-		xbox.a.whenPressed(new RotateToAngle(45, 0.5));
+		xbox.x.whenPressed(new DefaultShootingAuto());
+		xbox.y.whenPressed(new DefaultAuto());
 		xbox.b.whenPressed(new AutoTarget());
 		xbox.leftBumper.whenPressed(new Intake());
 		xbox.leftBumper.whenReleased(new SetShooter(0));

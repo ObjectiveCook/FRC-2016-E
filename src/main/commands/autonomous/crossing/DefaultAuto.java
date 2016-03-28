@@ -1,6 +1,7 @@
 package main.commands.autonomous.crossing;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import main.commands.autonomous.shooting.Shooting;
 import main.commands.battleaxes.DeployLeft;
 import main.commands.battleaxes.DeployRight;
 import main.commands.drivetrain.DriveDistance;
@@ -16,5 +17,6 @@ public class DefaultAuto extends CommandGroup {
     	addSequential(new DeployRight());
     	addSequential(new HomeTurret());
     	addSequential(new DriveDistance(180, 0.5));
+    	addSequential(new Shooting(1));
     }
 }
