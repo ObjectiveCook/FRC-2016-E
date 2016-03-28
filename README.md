@@ -1,4 +1,4 @@
-FRC-2016 https://travis-ci.org/ObjectiveCook/FRC-2016-E.svg?branch=development
+FRC-2016 (https://travis-ci.org/ObjectiveCook/FRC-2016-E.svg?branch=development)
 =========
 Code repository for Flagship's 2016 robot: "Nacls"
 
