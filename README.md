@@ -6,5 +6,8 @@ Code repository for Flagship's 2016 robot: "Nacls"
 - [x] Refactored code for OCD peace-of-mind
 - [x] Smoothened teleop-driving (thanks Amos)
 - [x] Usage of multiple sensors (Cameras, Limit-switches, encoders, gyroscopes, etc...)
+- [x] Multiple autonomouses for changing game-strategies
 - [x] Plethera of closed control-loops (Bang-bang, PID, ~~Motion-profiling~~ [next year])
-- [x] Vision processing through the use of [GRIP] (https://github.com/WPIRoboticsProjects/GRIP)(both in teleop and autonomous)
+- [x] Vision processing through the use of [GRIP] (https://github.com/WPIRoboticsProjects/GRIP) (both in teleop and autonomous)
+- [x] LEDS "totally do not" catch on fire
+- [ ] Infinte loop of dank-memes
