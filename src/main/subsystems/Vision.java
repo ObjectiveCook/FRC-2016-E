@@ -13,7 +13,7 @@ public class Vision extends Subsystem {
 
 	private final double FOVx_px = 160;
 	private final double FOVx_deg = 47;
-	private final double targetLength = 1.667; // Feet
+	private final double targetWdith = 1.667; // Feet
 	private final double targetHeight = 6.667; // Feet
 	private double[] defaultValue = new double[0];
 	private double centerX, centerY, width, height;
