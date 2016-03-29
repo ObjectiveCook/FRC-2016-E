@@ -37,7 +37,7 @@ public class Robot extends IterativeRobot {
 	public static DriveCamera camera;
 
     Command autonomousCommand;
-    SendableChooser commandChooser, positionChooser;
+    public static SendableChooser commandChooser, positionChooser;
 
     /**
      * This function is run when the robot is first started up and should be
