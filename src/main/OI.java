@@ -23,7 +23,7 @@ public class OI {
 	
 	private void check() {
 		//xbox.a.whenPressed(new DriveDistance(12, 0.5));
-		//xbox.b.whenPressed(new DefaultShootingAuto());
+		xbox.b.whenPressed(new DefaultShootingAuto());
 		xbox.rightJoystickButton.whenPressed(new AutoTarget());
 		xbox.leftBumper.whenPressed(new Intake());
 		xbox.leftBumper.whenReleased(new SetShooter(0));

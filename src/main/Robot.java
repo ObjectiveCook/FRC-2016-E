@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import lib.DriveCamera;
+import main.commands.autonomous.crossing.DefaultAuto;
 import main.commands.drivetrain.Drive;
 import main.subsystems.Drivetrain;
 import main.subsystems.Shooter;
@@ -24,7 +25,7 @@ import main.subsystems.battleaxes.RightAxe;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static Integer position;
+	public static Integer position = 1;
 	public static OI oi;
 	public static Drivetrain dt;
 	public static LeftAxe la;
@@ -63,7 +64,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto position", positionChooser);
         
         commandChooser = new SendableChooser();
-        commandChooser.addDefault("Low-bar", new Drive());
+        commandChooser.addDefault("Low-bar", new DefaultAuto());
         commandChooser.addObject("Porticullis", new Drive());
         commandChooser.addObject("Cheval de Frise", new Drive());
         commandChooser.addObject("Moat", new Drive());
@@ -98,8 +99,9 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) commandChooser.getSelected();
         position = (Integer) positionChooser.getSelected();
+        autonomousCommand = (Command) commandChooser.getSelected();
+        
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

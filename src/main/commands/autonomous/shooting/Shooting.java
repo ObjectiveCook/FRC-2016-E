@@ -9,7 +9,7 @@ import main.commands.drivetrain.TurnToAngle;
  *
  */
 public class Shooting extends CommandGroup {
-    private Integer position = 1;
+    private Integer position = Robot.position;
     
     public  Shooting() {
     	if(position == 1) {

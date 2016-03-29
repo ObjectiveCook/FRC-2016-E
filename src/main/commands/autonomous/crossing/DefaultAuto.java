@@ -15,7 +15,7 @@ public class DefaultAuto extends CommandGroup {
     public  DefaultAuto() {
     	addSequential(new DeployLeft());
     	addSequential(new DeployRight());
-    	addSequential(new HomeTurret());
+    	//addSequential(new HomeTurret());
     	addSequential(new DriveDistance(180, 0.5));
     	addSequential(new Shooting());
     }

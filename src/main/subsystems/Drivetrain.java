@@ -59,7 +59,8 @@ public class Drivetrain extends Subsystem implements Constants {
 	}
 
 	public double getDistance() {
-		return ((-left.getPosition()) + (right.getPosition())) / 2;
+		System.out.println("DIST:" + (-((-left.getPosition()) + (right.getPosition())) / 2));
+		return -(((-left.getPosition()) + (right.getPosition())) / 2);
 	}
 
 	public void reset() {
