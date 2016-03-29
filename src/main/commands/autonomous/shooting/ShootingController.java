@@ -38,7 +38,7 @@ public class ShootingController extends CommandGroup {
 			/*addSequential(new RotateToAngle(62, 1.0));
 			addSequential(new DriveDistance(70, 0.5));
 			addSequential(new TurnToAngle(0, 1.0));
-			addSequential(new DriveDistance(50, 0.5));
+			addSequential(new DriveDistance(20, 0.5));
 			addSequential(new SetBrakeMode(false));
 			addSequential(new AutoTarget());*/
 			addSequential(new RotateToAngle(60, 1.0));
@@ -47,7 +47,7 @@ public class ShootingController extends CommandGroup {
 			/*addSequential(new RotateToAngle(-12, 1.0));
 			addSequential(new DriveDistance(60, 0.5));
 			addSequential(new TurnToAngle(0, 1.0));
-			addSequential(new DriveDistance(50, 0.5));
+			addSequential(new DriveDistance(20, 0.5));
 			addSequential(new SetBrakeMode(false));
 			addSequential(new AutoTarget());*/
 		} else if (position == 5) {
@@ -55,7 +55,7 @@ public class ShootingController extends CommandGroup {
 			/*addSequential(new RotateToAngle(-47, 1.0));
 			addSequential(new DriveDistance(86, 0.5));
 			addSequential(new TurnToAngle(0, 1.0));
-			addSequential(new DriveDistance(50, 0.5));
+			addSequential(new DriveDistance(20, 0.5));
 			addSequential(new SetBrakeMode(false));
 			addSequential(new AutoTarget());*/
 		}
