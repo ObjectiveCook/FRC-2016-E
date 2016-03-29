@@ -43,15 +43,12 @@ public class Drivetrain extends Subsystem implements Constants {
 		rightSlave.enableBrakeMode(true);
 
 		drive = new RobotDrive(left, right);
-		// drive.setSafetyEnabled(true);
 		drive.setExpiration(0.1);
-		// drive.setSensitivity(0.3);
 		drive.setMaxOutput(0.85);
 	}
 
 	public void arcadeDrive(double move, double rotate, boolean squared) {
 		drive.arcadeDrive(move, rotate, false);
-		//System.out.println("GYRO:" + gyro.getAngle());
 	}
 
 	public void drive(double magnitude, double curve) {
