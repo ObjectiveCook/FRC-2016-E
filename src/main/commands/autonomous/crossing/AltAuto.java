@@ -14,7 +14,7 @@ public class AltAuto extends CommandGroup {
     public  AltAuto() {
     	addSequential(new SetBrakeMode(true));
     	addSequential(new HomeTurretUp());
-    	addSequential(new DriveDistance(180, 0.5));
+    	addSequential(new DriveDistance(121, 0.5));
     	addSequential(new ShootingController());
     }
 }

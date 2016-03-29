@@ -15,7 +15,7 @@ public class ReverseAuto extends CommandGroup {
     public  ReverseAuto() {
     	addSequential(new SetBrakeMode(true));
     	addSequential(new DriveDistance(-180, 0.5));
-    	addSequential(new TurnToAngle(180, 0.8));
+    	addSequential(new TurnToAngle(121, 0.8));
     	addSequential(new ResetGyro());
     	addSequential(new ShootingController());
     }
