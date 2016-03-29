@@ -9,10 +9,10 @@ import main.commands.drivetrain.TurnToAngle;
 /**
  *
  */
-public class Shooting extends CommandGroup {
+public class ShootingController extends CommandGroup {
 	private Integer position = (Integer) Robot.positionChooser.getSelected();
 
-	public Shooting() {
+	public ShootingController() {
 		if (position == 0) {
 			addSequential(new TurnToAngle(90));
 			/*addSequential(new TurnToAngle(180));
