@@ -8,13 +8,11 @@ import main.commands.drivetrain.DriveDistance;
 import main.commands.turret.HomeTurret;
 
 /**
- * Crosses the Low-bar and Porticullis
+ * Crosses the Ramparts and Rough-terrain
  */
-public class DefaultAuto extends CommandGroup {
+public class AltAuto extends CommandGroup {
     
-    public  DefaultAuto() {
-    	addSequential(new DeployLeft());
-    	addSequential(new DeployRight());
+    public  AltAuto() {
     	addSequential(new DriveDistance(180, 0.5));
     	addSequential(new Shooting());
     }

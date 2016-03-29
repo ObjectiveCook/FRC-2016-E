@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import lib.DriveCamera;
+import main.commands.autonomous.crossing.AltAuto;
+import main.commands.autonomous.crossing.ChevalAuto;
+import main.commands.autonomous.crossing.DefaultAuto;
+import main.commands.autonomous.crossing.ReverseAuto;
 import main.commands.drivetrain.Drive;
 import main.subsystems.Drivetrain;
 import main.subsystems.Shooter;
@@ -24,7 +28,6 @@ import main.subsystems.battleaxes.RightAxe;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static Integer position;
 	public static OI oi;
 	public static Drivetrain dt;
 	public static LeftAxe la;
@@ -36,7 +39,7 @@ public class Robot extends IterativeRobot {
 	public static DriveCamera camera;
 
     Command autonomousCommand;
-    SendableChooser commandChooser, positionChooser;
+    public static SendableChooser commandChooser, positionChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -60,16 +63,17 @@ public class Robot extends IterativeRobot {
         positionChooser.addObject("3", 3);
         positionChooser.addObject("4", 4);
         positionChooser.addObject("5", 5);
+        positionChooser.addObject("No Shooting", 0);
         SmartDashboard.putData("Auto position", positionChooser);
         
         commandChooser = new SendableChooser();
-        commandChooser.addDefault("Low-bar", new Drive());
-        commandChooser.addObject("Porticullis", new Drive());
-        commandChooser.addObject("Cheval de Frise", new Drive());
-        commandChooser.addObject("Moat", new Drive());
-        commandChooser.addObject("Ramparts", new Drive());
-        commandChooser.addObject("Rough-terrain", new Drive());
-        commandChooser.addObject("Rock wall", new Drive());
+        commandChooser.addDefault("Low-bar", new DefaultAuto());
+        commandChooser.addObject("Porticullis", new DefaultAuto());
+        commandChooser.addObject("Cheval de Frise", new ChevalAuto());
+        commandChooser.addObject("Moat", new ReverseAuto());
+        commandChooser.addObject("Ramparts", new AltAuto());
+        commandChooser.addObject("Rough-terrain", new AltAuto());
+        commandChooser.addObject("Rock wall", new ReverseAuto());
         SmartDashboard.putData("Auto mode", commandChooser);
 
 
@@ -99,7 +103,6 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) commandChooser.getSelected();
-        position = (Integer) positionChooser.getSelected();
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
