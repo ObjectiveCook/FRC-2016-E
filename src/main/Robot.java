@@ -69,7 +69,7 @@ public class Robot extends IterativeRobot {
 		position = (Integer) positionChooser.getSelected();
 
 		commandChooser = new SendableChooser();
-		commandChooser.addDefault("Low-bar", new TestingAuto());
+		commandChooser.addDefault("Low-bar", new DefaultAuto());
 		commandChooser.addObject("Porticullis", new TestingAuto());
 		commandChooser.addObject("Cheval de Frise", new ChevalAuto());
 		commandChooser.addObject("Moat", new ReverseAuto());
