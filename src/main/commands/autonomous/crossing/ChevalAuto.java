@@ -5,14 +5,16 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 import main.commands.battleaxes.DeployLeft;
 import main.commands.battleaxes.DeployRight;
 import main.commands.drivetrain.DriveDistance;
+import main.commands.drivetrain.SetBrakeMode;
 import main.commands.turret.HomeTurret;
 
 /**
- * Crosses the Low-bar and Porticullis
+ * Crosses the cheval...maybe
  */
 public class ChevalAuto extends CommandGroup {
     
     public  ChevalAuto() {
+    	addSequential(new SetBrakeMode(true));
     	addSequential(new DriveDistance(24, 0.5)); // Drive upto Cheval
     	//addSequential(new DeployLeft());
     	//addSequential(new DeployRight());
