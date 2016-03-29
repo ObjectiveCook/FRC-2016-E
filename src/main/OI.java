@@ -5,6 +5,7 @@ import main.commands.autonomous.crossing.AltAuto;
 import main.commands.autonomous.crossing.ChevalAuto;
 import main.commands.autonomous.crossing.DefaultAuto;
 import main.commands.autonomous.crossing.ReverseAuto;
+import main.commands.autonomous.crossing.TestingAuto;
 import main.commands.battleaxes.DeployLeft;
 import main.commands.battleaxes.DeployRight;
 import main.commands.drivetrain.DriveDistance;
@@ -29,6 +30,7 @@ public class OI {
 		xbox.x.whenPressed(new AltAuto());
 		xbox.y.whenPressed(new ReverseAuto());
 		xbox.select.whenPressed(new ChevalAuto());
+		xbox.start.whenPressed(new TestingAuto());
 		
 		xbox.leftBumper.whenPressed(new Intake());
 		xbox.leftBumper.whenReleased(new SetShooter(0));

@@ -54,7 +54,7 @@ public class Robot extends IterativeRobot {
 		vi = new Vision();
 		oi = new OI();
 		
-		camera = new DriveCamera("cam1", 60);
+		camera = new DriveCamera("cam1", 50);
 		camera.start();
 		
         positionChooser = new SendableChooser();
