@@ -2,7 +2,6 @@
 package main;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -14,6 +13,7 @@ import main.commands.autonomous.crossing.ChevalAuto;
 import main.commands.autonomous.crossing.DefaultAuto;
 import main.commands.autonomous.crossing.ReverseAuto;
 import main.commands.autonomous.crossing.TestingAuto;
+import main.commands.autonomous.shooting.DefaultShootingAuto;
 import main.subsystems.Drivetrain;
 import main.subsystems.Shooter;
 import main.subsystems.Turret;
@@ -76,6 +76,7 @@ public class Robot extends IterativeRobot {
 		commandChooser.addObject("Ramparts", new AltAuto());
 		commandChooser.addObject("Rough-terrain", new AltAuto());
 		commandChooser.addObject("Rock wall", new ReverseAuto());
+		commandChooser.addObject("Emergency Auto", new DefaultShootingAuto());
 		SmartDashboard.putData("Auto mode", commandChooser);
 
 	}
