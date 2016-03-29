@@ -17,7 +17,7 @@ public class RotateToAngle extends Command {
 	private static double kP = 1.5;
 	private static double kI = 1.0;
 	private static double kD = 1.0;
-	private static final double TOLERANCE = 2.0;
+	private static final double TOLERANCE = 1.0;
 
 	private PIDController pid;
 	private AnalogGyro gyro = HardwareAdapter.gyro;

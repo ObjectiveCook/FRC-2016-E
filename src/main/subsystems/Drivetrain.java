@@ -49,6 +49,7 @@ public class Drivetrain extends Subsystem implements Constants {
 
 	public void arcadeDrive(double move, double rotate, boolean squared) {
 		drive.arcadeDrive(move, rotate, false);
+		System.out.println("GYRO: " + gyro.getAngle());
 	}
 
 	public void drive(double magnitude, double curve) {
@@ -57,7 +58,7 @@ public class Drivetrain extends Subsystem implements Constants {
 
 	public double getDistance() {
 		System.out.println(((left.getPosition()) - (right.getPosition())) / 2);
-		return ((left.getPosition()) - (right.getPosition())) / 2;
+		return -((left.getPosition()) - (right.getPosition())) / 2;
 	}
 
 	public void reset() {
