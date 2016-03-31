@@ -1,20 +1,20 @@
 package main.commands.autonomous.crossing;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import main.Robot;
 import main.commands.autonomous.shooting.ShootingController;
+import main.commands.battleaxes.DeployLeft;
+import main.commands.battleaxes.DeployRight;
 import main.commands.drivetrain.DriveDistance;
 import main.commands.drivetrain.SetBrakeMode;
-import main.commands.turret.HomeTurretUp;
+import main.commands.turret.HomeTurret;
 
 /**
- * Crosses the Ramparts and Rough-terrain
+ * Crosses the Low-bar and Porticullis
  */
-public class AltAuto extends CommandGroup {
+public class TestingAuto extends CommandGroup {
     
-    public  AltAuto() {
-    	addSequential(new SetBrakeMode(true));
-    	addSequential(new HomeTurretUp());
-    	addSequential(new DriveDistance(121, 0.5));
+    public  TestingAuto() {
     	addSequential(new ShootingController());
     }
 }

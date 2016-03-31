@@ -25,7 +25,7 @@ public class Turret extends Subsystem implements Constants {
 	public Turret() {
 		// reset();
 		setCtrlMode(VBUS);
-		winch.setInverted(false);
+		winch.setInverted(true);
 		winch.enableBrakeMode(BRAKE);
 		winch.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		winch.changeControlMode(POS);

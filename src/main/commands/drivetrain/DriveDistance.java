@@ -69,7 +69,7 @@ public class DriveDistance extends Command {
 				// Drive with the magnitude returned by the PID calculation,
 				// and curve the opposite way from the current yaw reading
 				// (Divide yaw by 180 so as to normalize to -1.0 / + 1.0)
-				Robot.dt.drive(d, 0);
+				Robot.dt.drive(-d, 0);
 			}
 		});
 

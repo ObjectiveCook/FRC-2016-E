@@ -1,4 +1,4 @@
-package main.subsystems;
+ package main.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -43,15 +43,13 @@ public class Drivetrain extends Subsystem implements Constants {
 		rightSlave.enableBrakeMode(true);
 
 		drive = new RobotDrive(left, right);
-		// drive.setSafetyEnabled(true);
 		drive.setExpiration(0.1);
-		// drive.setSensitivity(0.3);
 		drive.setMaxOutput(0.85);
 	}
 
 	public void arcadeDrive(double move, double rotate, boolean squared) {
 		drive.arcadeDrive(move, rotate, false);
-		System.out.println("GYRO:" + gyro.getAngle());
+		System.out.println("GYRO: " + gyro.getAngle());
 	}
 
 	public void drive(double magnitude, double curve) {
@@ -59,7 +57,6 @@ public class Drivetrain extends Subsystem implements Constants {
 	}
 
 	public double getDistance() {
-		System.out.println("DIST:" + (-((-left.getPosition()) + (right.getPosition())) / 2));
 		return -(((-left.getPosition()) + (right.getPosition())) / 2);
 	}
 
