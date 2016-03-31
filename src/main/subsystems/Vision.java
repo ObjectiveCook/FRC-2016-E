@@ -48,9 +48,12 @@ public class Vision extends Subsystem {
 	public boolean targetGoal() {
 		angleX = (((centerX - FOVx_px)/FOVx_px) * FOVx_deg) - 15.0;
 		//double range = ((targetWidth/2)/(Math.atan(2*width/6.8085)));
-		double range = (targetWidth * 640)/(2*width*Math.atan(FOVx_deg/2));
-		System.out.println("ANGLE: " + angleX);
-		System.out.println("RANGE: " + range);
+		double distance = (targetWidth * 640)/(2*width*Math.atan(FOVx_deg/2));
+		double angleY = Math.atan(targetHeight/distance);
+		angleY = Math.toDegrees(angleY);
+		System.out.println("ANGLEX: " + angleX);
+		System.out.println("ANGLEY: " + angleY);
+		System.out.println("RANGE: " + distance);
 		return true;
 	}
 
