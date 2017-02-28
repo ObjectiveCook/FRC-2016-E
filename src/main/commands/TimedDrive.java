@@ -1,4 +1,4 @@
-package main.commands.vision;
+package main.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import main.Robot;
@@ -6,33 +6,30 @@ import main.Robot;
 /**
  *
  */
-public class TargetGoal extends Command {
-	private boolean onTarget;
-    public TargetGoal() {
-    	requires(Robot.vi);
-    	setTimeout(2);
+public class TimedDrive extends Command {
+	private double speed;
+    public TimedDrive(double time, double speed) {
+    	requires(Robot.dt);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!Robot.vi.createImage())
-    		return;
-    	
-    	onTarget = Robot.vi.targetGoal();
+    	Robot.dt.arcadeDrive(0.6, 0.0, false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut() || onTarget;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.dt.arcadeDrive(speed, 0.0, false);
     }
 
     // Called when another command which requires one or more of the same

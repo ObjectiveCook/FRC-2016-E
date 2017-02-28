@@ -25,7 +25,7 @@ public class Turret extends Subsystem implements Constants {
 	public Turret() {
 		// reset();
 		setCtrlMode(VBUS);
-		winch.setInverted(true);
+		winch.setInverted(false);
 		winch.enableBrakeMode(BRAKE);
 		winch.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		winch.changeControlMode(POS);
@@ -39,11 +39,11 @@ public class Turret extends Subsystem implements Constants {
 	}
 
 	public void homeDown() {
-			winch.set(TURRET_DOWNWARD_THROTTLE);
+			winch.set(TURRET_DOWNWARD_THROTTLE);//Alex added negative, Ryan removed it
 	}
 
 	public void homeUp() {
-			winch.set(-TURRET_UPWARD_THROTTLE);
+			winch.set(-TURRET_UPWARD_THROTTLE);//Alex removed negative, Ryan added it 
 
 	}
 	
@@ -57,7 +57,8 @@ public class Turret extends Subsystem implements Constants {
 		else if (yAxis > 0.0 && !lower.get())
 			winch.set(0);
 		else
-			winch.set(yAxis);
+			winch.set(yAxis);//If this goes haywire blame Alex but, 
+		//adding the negative sign fixed it during open house.
 
 	}
 

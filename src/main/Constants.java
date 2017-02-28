@@ -50,6 +50,9 @@ public interface Constants {
 	// PWM Ports
 	public static final int LEFT_SHOOTER = 0;
 	public static final int RIGHT_SHOOTER = 1;
+	public static final int LEFT_INTAKE = 3;
+	public static final int RIGHT_INTAKE = 2;
+	
 	// PCM Ports
 	public static final int SHIFTER_EXT = 1;
 	public static final int SHIFTER_RET = 0;

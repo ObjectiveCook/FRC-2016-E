@@ -1,17 +1,12 @@
 package main;
 
 import lib.XboxController;
-import main.commands.autonomous.crossing.AltAuto;
-import main.commands.autonomous.crossing.ChevalAuto;
-import main.commands.autonomous.crossing.DefaultAuto;
-import main.commands.autonomous.crossing.ReverseAuto;
-import main.commands.autonomous.crossing.TestingAuto;
+import main.commands.Spaghetti;
 import main.commands.battleaxes.DeployLeft;
 import main.commands.battleaxes.DeployRight;
-import main.commands.drivetrain.DriveDistance;
-import main.commands.shooter.Intake;
 import main.commands.shooter.SetShooter;
 import main.commands.shooter.Shoot;
+import main.commands.shooter.Intake;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,16 +20,16 @@ public class OI {
 	}
 	
 	private void check() {
-		xbox.a.whenPressed(new DriveDistance(12, 0.5));
-		xbox.b.whenPressed(new DefaultAuto());
-		xbox.x.whenPressed(new AltAuto());
-		xbox.y.whenPressed(new ReverseAuto());
-		xbox.select.whenPressed(new ChevalAuto());
-		xbox.start.whenPressed(new TestingAuto());
-		
+		//xbox.a.whenPressed(new RotateToAngle(90));
 		xbox.leftBumper.whenPressed(new Intake());
 		xbox.leftBumper.whenReleased(new SetShooter(0));
+		xbox.leftBumper.whenReleased(new Spaghetti(0));
 		xbox.rightBumper.whenPressed(new Shoot());
+		
+		xbox.a.whenPressed(new Spaghetti(0.4));
+		xbox.a.whenReleased(new Spaghetti(0));
+		//xbox.a.whenPressed(new Spaghetti(0.45));
+		//xbox.a.whenReleased(new Spaghetti(0));
 		
 		xbox.leftTrigger.whenPressed(new DeployLeft());
 		xbox.rightTrigger.whenPressed(new DeployRight());

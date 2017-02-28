@@ -24,6 +24,8 @@ public class HardwareAdapter implements Constants {
 	// Sparks
 	public static final Spark leftShooter = new Spark(LEFT_SHOOTER);
 	public static final Spark rightShooter = new Spark(RIGHT_SHOOTER);
+	public static final Spark leftIntake = new Spark(LEFT_INTAKE);
+	public static final Spark rightIntake = new Spark(RIGHT_INTAKE);
 	// Pneumatics
 	public static final DoubleSolenoid launcher = new DoubleSolenoid(PCM, LAUNCHER_EXT, LAUNCHER_RET);
 	public static final DoubleSolenoid leftAxe = new DoubleSolenoid(PCM, LEFT_AXE_EXT, LEFT_AXE_RET);
